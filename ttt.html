@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+	    <head>
+	        <link rel="stylesheet" type="text/css" href="css3.css"/>
+	        <script type="text/javascript">
+	        //Global Variables
+	        var painted;
+	        var content;
+	        var winningCombinations;
+	        var turn = 0;
+	        var theCanvas;
+	        var c;
+	        var cxt;
+	        var squaresFilled = 0;
+            var w;
+	        var y;
+	 
+	        //Instanciate Arrays
+	        window.onload=function(){  
+	             
+	            painted = new Array();
+	            content = new Array();
+	            winningCombinations = [[0,1,2],[1,2,3],[4,5,6],[5,6,7],[8,9,10],[9,10,11],[12,13,14],[13,14,15],[0,4,8],[4,8,12],[1,5,9],[5,9,13],[2,6,10],[6,10,14],[3,7,11],[7,11,15],[0,5,10][5,10,15],[3,6,9],[6,9,12]];	 
+	            for(var l = 0; l <= 15; l++)
+	            { 
+	              painted[l] = false;
+	              content[l]='';
+	            }
+	        }
+	 
+        //Game methods
+	        function canvasClicked(canvasNumber){
+	            theCanvas = "canvas"+canvasNumber;
+	            c = document.getElementById(theCanvas);
+	            cxt = c.getContext("2d");
+	 
+	            if(painted[canvasNumber-1] ==false){
+	                if(turn%2==0){111
+	                    cxt.beginPath();
+	                    cxt.moveTo(10,10);
+	                    cxt.lineTo(40,40);
+	                    cxt.moveTo(40,10);
+	                    cxt.lineTo(10,40);
+	                    cxt.stroke();
+	                    cxt.closePath();
+                   content[canvasNumber-1] = 'X';
+	                }
+	 
+	                else{
+	                    cxt.beginPath();
+	                    cxt.arc(25,25,20,0,Math.PI*2,true);
+	                    cxt.stroke();
+	                    cxt.closePath();
+	                    content[canvasNumber-1] = 'O';
+	                }
+	 
+	                turn++;
+	                painted[canvasNumber-1] = true;
+	                squaresFilled++;
+                checkForWinners(content[canvasNumber-1]);
+	 
+	                if(squaresFilled==15){
+	                    alert("THE GAME IS OVER!");
+	                    location.reload(true);
+	                }
+	             
+	            }
+	            else{
+	                alert("THAT SPACE IS ALREADY OCCUPIED WITH YOUR HEART!");
+	            }
+	 
+	        }
+	 
+	        function checkForWinners(symbol){
+	             
+	            for(var a = 0; a < winningCombinations.length; a++){
+	            if(content[winningCombinations[a][0]]==symbol&&content[winningCombinations[a][1]]== symbol&&content[winningCombinations[a][2]]==symbol)
+	            {
+	                alert(symbol+ " WON!");
+	                playAgain();
+	            }
+	            }
+	 
+	        }
+	 
+	        function playAgain(){
+	            y=confirm("PLAY AGAIN?");
+	            if(y==true){
+	                alert("OKAY! ^^/>");
+	                location.reload(true);
+	            }
+	            else{
+	                alert("SO LONG,SUCKER!");
+	        }
+	 
+	        }
+	 
+	 
+	        </script>
+	    </head>
+	    <body>
+	    <div id="header" style="background-color:#FFA500;">
+	    <h1 style="margin-bottom:0;">TIC - TAC - TOE</h1></div>
+	    <p style="background-colour:#909090"></p>
+	        <div id ="box" style="background-colour:#800000">
+	        <canvas id = "canvas1"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(1)"></canvas>
+	        <canvas id = "canvas2"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(2)"></canvas>
+	        <canvas id = "canvas3"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(3)"></canvas>
+	        <canvas id = "canvas4"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(4)"></canvas><br/>
+	        <canvas id = "canvas5"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(5)"></canvas>
+            <canvas id = "canvas6"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(6)"></canvas>
+            <canvas id = "canvas7"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(7)"></canvas>
+            <canvas id = "canvas8"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(8)"></canvas><br/>
+            <canvas id = "canvas9"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(9)"></canvas>
+            <canvas id = "canvas10"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(10)"></canvas>
+            <canvas id = "canvas11"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(11)"></canvas>
+            <canvas id = "canvas12"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(12)"></canvas><br/>
+            <canvas id = "canvas13"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(13)"></canvas>
+            <canvas id = "canvas14"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(14)"></canvas>
+            <canvas id = "canvas15"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(15)"></canvas>
+            <canvas id = "canvas16"  width="50" height="50" style="border:1px solid black" onclick="canvasClicked(16)"></canvas><br/>
+        </p>
+        </div>
+	    </body>
+	</html>

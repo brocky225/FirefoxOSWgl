@@ -1,0 +1,14 @@
+{
+ "name": "TIC TAC TOE",
+ "description": "A Game",
+ "launch_path": "/ttt.html",
+ "icons":
+ {
+ "128": "/img/game.jpg"
+ },
+ "developer":{
+ "name": "Rakesh,Manikanth,Anil,Sujeeth",
+ "url": "http://mozilla.org"
+ },
+ "default_locale":"en"
+ }
